@@ -1,0 +1,46 @@
+@import './Variables.scss';
+@import './Mixins.scss';
+
+.main {
+    height: 100vh;
+    padding: 20px;
+
+    .container {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .header-section {
+        display: flex;
+        padding: 20px 0;
+        border-bottom: 1px solid #DEDEDE;
+        justify-content: space-between;
+        .header-text{
+            display: flex;
+            padding: 0 20px;
+            align-items: center;
+        }
+        .header-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+#create-btn {
+    @include buttonStyle($primaryButton, $primaryHoverButton);
+}
+
+#delete-product-btn {
+    @include buttonStyle($dangerButton, $dangerHoverButton);
+}
+
+#cancel-btn {
+    @include buttonStyle($greyButton, $greyHoverButton);
+}
+
+.list-content {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
