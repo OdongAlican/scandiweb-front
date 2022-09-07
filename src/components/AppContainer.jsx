@@ -31,6 +31,7 @@ const AppContainer = ({
         </div>
       </div>
       <div className="container">{children}</div>
+      <footer>Scandiweb Test assignment</footer>
     </div>
   )
 }

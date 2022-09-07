@@ -1,4 +1,4 @@
 const products = '/';
-const create = '/create-product';
+const create = '/add-product';
 
 export const ROUTES = { products, create };
