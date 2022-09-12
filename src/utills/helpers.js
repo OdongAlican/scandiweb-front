@@ -24,3 +24,15 @@ const base64Format = (value) => {
 }
 
 export const formValidator = (formData) => base64Format(formData);
+
+export const decodeBase64Data = (data) => atob(data);
+
+export const enumerateObject = (obj) => {
+    let result;
+    Object.entries(JSON.parse(obj)).forEach(([key, value]) => {
+        if (value.length > 0) { result = { value, key } };
+    });
+    return result;
+}
+
+export const capitalizeStr = str => str.charAt(0).toUpperCase() + str.slice(1);
