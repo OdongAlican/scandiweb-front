@@ -2,14 +2,14 @@ import React from 'react';
 import '../styles/Card.scss';
 import Checkbox from './Checkbox';
 
-const ProductCard = () => {
+const ProductCard = ({ data }) => {
     return (
         <div className="card">
             <Checkbox />
             <div>
-                <p>Text content</p>
-                <h4><b>John Doe</b></h4>
-                <p>Architect & Engineer</p>
+                <p>{data?.sku && data?.sku}</p>
+                <h4><b>{data?.name && data?.name}</b></h4>
+                <p>{data?.price && data?.price}</p>
                 <p>Architect & Engineer</p>
             </div>
         </div>
