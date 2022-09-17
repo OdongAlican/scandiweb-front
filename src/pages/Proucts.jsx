@@ -5,6 +5,25 @@ import ProductCard from '../components/ProductCard';
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [checkedItems, setCheckedItem] = useState({});
+  const [deleteArray, setDeleteArray] = useState([]);
+
+  const handleChange = (event) => {
+    setCheckedItem({ id: event.target.id, value: event.target.checked });
+  }
+
+  const filterArray = (data, current) => data.forEach(ele => {
+    if (ele?.id === current?.id && current?.value === true) {
+      return setDeleteArray([...deleteArray, ele]);
+    }
+    if (ele?.id === current?.id && current?.value === false) {
+      const data = deleteArray.filter(val => val?.id !== ele?.id)
+      setDeleteArray(data);
+    }
+    return;
+  });
+
+  useEffect(() => { filterArray(products, checkedItems) }, [checkedItems]);
 
   const getProducts = async () => {
     try {
@@ -17,7 +36,7 @@ function Products() {
 
   useEffect(() => { getProducts() }, []);
 
-  const deleteProducts = () => console.log('List deleted');
+  const deleteProducts = () => setProducts(products.filter(a => !deleteArray.map(b => b.id).includes(a.id)));
 
   return (
     <AppContainer
@@ -26,7 +45,7 @@ function Products() {
       btnFunction={deleteProducts}
       btnTwo="MASS DELETE">
       <div className="list-content">
-        {products?.length > 0 ? (products?.map(element => <ProductCard key={element?.id} data={element} />)) : null}
+        {products?.length > 0 ? (products?.map(element => <ProductCard checkedItems={checkedItems} handleChange={handleChange} key={element?.id} data={element} />)) : null}
       </div>
     </AppContainer>
   );

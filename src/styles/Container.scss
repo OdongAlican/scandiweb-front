@@ -15,11 +15,17 @@
         padding: 20px 0;
         border-bottom: 1px solid $borderColor;
         justify-content: space-between;
-        .header-text{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 1.2;
+        color: #212529;
+
+        .header-text {
             display: flex;
             padding: 0 20px;
             align-items: center;
         }
+
         .header-buttons {
             display: flex;
             justify-content: space-between;
@@ -54,4 +60,37 @@ footer {
     background-color: #10132C;
     text-align: center;
     color: $whiteColor;
+}
+
+@media screen and (max-width: 1040px) {
+    .list-content {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .list-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .list-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .header-section {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .header-buttons {
+        flex-direction: column;
+        button: {
+            margin-top: 10px;
+        }
+    }
 }
