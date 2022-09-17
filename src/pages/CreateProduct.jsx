@@ -6,6 +6,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 import TextArea from '../components/TextArea';
 import { productTypes, initialState, formValidator } from '../utills/helpers';
+import { baseURL } from '../utills/routes';
 
 const CreateProduct = () => {
 
@@ -18,10 +19,9 @@ const CreateProduct = () => {
 
   const submitProduct = async () => {
     const data = formValidator(values);
-    const url = 'http://localhost:9000/products';
     let response;
     try {
-      response = await axios.post(url, data, {
+      response = await axios.post(baseURL, data, {
         headers: { "content-type": 'application/json' }
       });
       console.log(response, 'response');
@@ -39,9 +39,9 @@ const CreateProduct = () => {
       btnTwo="Cancel">
       <form action='submit'>
         <div className="left-form-section">
-          <Input tabIndex={1} inputName="SKU" inputId="sku" inputValue={values?.sku} handleChange={handleChange} />
-          <Input tabIndex={2} inputName="Name" inputId="name" inputValue={values?.name} handleChange={handleChange} />
-          <Input tabIndex={3} inputName="Price ($)" inputId="price" inputValue={values?.price} handleChange={handleChange} />
+          <Input tabIndex={1} inputName="SKU" inputId="sku" inputValue={values?.sku} handleChange={handleChange} placeholder="Enter SKU" />
+          <Input tabIndex={2} inputName="Name" inputId="name" inputValue={values?.name} handleChange={handleChange} placeholder="Enter Name" />
+          <Input tabIndex={3} inputName="Price ($)" inputId="price" inputValue={values?.price} handleChange={handleChange} placeholder="Enter price (e.g 12)" />
           <Select
             selectID="productType"
             selectOptions={productTypes}
@@ -53,17 +53,17 @@ const CreateProduct = () => {
         <div className="right-form-section">
           {
             values?.type === 'DVD' ? (<div>
-              <Input tabIndex={4} inputName="Size (MB)" inputId="size" inputValue={values?.size} handleChange={handleChange} />
+              <Input tabIndex={4} inputName="Size (MB)" inputId="size" inputValue={values?.size} handleChange={handleChange} placeholder="Enter size (e.g 2)" />
               <TextArea tabIndex={5} inputName="Description" inputId="description" inputValue={values?.description} handleChange={handleChange} />
             </div>) :
               values?.type === 'Furniture' ? (<div>
-                <Input tabIndex={4} inputName="Height (CM)" inputId="height" inputValue={values?.height} handleChange={handleChange} />
-                <Input tabIndex={5} inputName="Width (CM)" inputId="width" inputValue={values?.width} handleChange={handleChange} />
-                <Input tabIndex={6} inputName="Length (CM)" inputId="length" inputValue={values?.length} handleChange={handleChange} />
+                <Input tabIndex={4} inputName="Height (CM)" inputId="height" inputValue={values?.height} handleChange={handleChange} placeholder="Enter height (e.g 2)" />
+                <Input tabIndex={5} inputName="Width (CM)" inputId="width" inputValue={values?.width} handleChange={handleChange} placeholder="Enter width (e.g 2)" />
+                <Input tabIndex={6} inputName="Length (CM)" inputId="length" inputValue={values?.length} handleChange={handleChange} placeholder="Enter length (e.g 2)" />
                 <TextArea tabIndex={7} inputName="Description" inputId="description" inputValue={values?.description} handleChange={handleChange} />
               </div>) :
                 values?.type === 'Book' ? (<div>
-                  <Input tabIndex={4} inputName="Weight (KG)" inputId="weight" inputValue={values?.weight} handleChange={handleChange} />
+                  <Input tabIndex={4} inputName="Weight (KG)" inputId="weight" inputValue={values?.weight} handleChange={handleChange} placeholder="Enter weight (e.g 2)" />
                   <TextArea tabIndex={5} inputName="Description" inputId="description" inputValue={values?.description} handleChange={handleChange} />
                 </div>) : null
           }

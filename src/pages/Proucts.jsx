@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AppContainer from '../components/AppContainer';
 import ProductCard from '../components/ProductCard';
+import { baseURL } from '../utills/routes';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -27,7 +28,7 @@ function Products() {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:9000/products');
+      const response = await axios.get(baseURL);
       setProducts(response?.data);
     } catch (error) {
       console.error(error);
