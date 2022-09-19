@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
+import { useNavigate } from 'react-router';
 import AppContainer from '../components/AppContainer';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import TextArea from '../components/TextArea';
 import { productTypes, initialState, formValidator } from '../utills/helpers';
-import { baseURL } from '../utills/routes';
+import { baseURL, ROUTES } from '../utills/routes';
 
 const CreateProduct = () => {
 
   const [values, setValues] = useState(initialState);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +25,8 @@ const CreateProduct = () => {
     }).then(function (response) {
       return response.json();
     }).then(function (data) {
-      console.log(data)
+      console.log(data);
+      navigate(ROUTES?.products)
     }).catch(er => console.error(er));
   }
   useEffect(() => setValues({ ...values, length: '', width: '', height: '', size: '', weight: '' }), [values?.type]);
