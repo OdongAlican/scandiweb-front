@@ -29,7 +29,9 @@ function Products() {
   const getProducts = async () => {
     try {
       const response = await axios.get(baseURL);
-      setProducts(response?.data);
+      const res = response?.data;
+      console.log(res)
+      setProducts(res);
     } catch (error) {
       console.error(error);
     }

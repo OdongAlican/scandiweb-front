@@ -29,7 +29,8 @@ export const decodeBase64Data = (data) => atob(data);
 
 export const enumerateObject = (obj) => {
     let result;
-    Object.entries(JSON.parse(obj)).forEach(([key, value]) => {
+    const dt = JSON.parse(obj)
+    Object.entries(dt).forEach(([key, value]) => {
         if (value.length > 0) { result = { value, key } };
     });
     return result;

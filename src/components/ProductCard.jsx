@@ -6,7 +6,9 @@ import Checkbox from './Checkbox';
 const ProductCard = ({ data, handleChange, checkedItems }) => {
 
     const displayData = (obj) => {
+        console.log(obj, 'product details');
         const val = decodeBase64Data(obj);
+        console.log(val, 'product details');
         const res = enumerateObject(val);
         const str = capitalizeStr(res?.key) + ' : ' + res?.value + ' ' + determineUnit(res?.key);
         return str;

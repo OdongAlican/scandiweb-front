@@ -19,15 +19,14 @@ const CreateProduct = () => {
 
   const submitProduct = async () => {
     const data = formValidator(values);
-    let response;
-    try {
-      response = await axios.post(baseURL, data, {
-        headers: { "content-type": 'application/json' }
-      });
-      console.log(response, 'response');
-    } catch (error) {
-      console.log(error?.response?.data);
-    }
+    fetch(baseURL, {
+      method: 'post',
+      body: JSON.stringify(data)
+    }).then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      console.log(data)
+    }).catch(er => console.error(er));
   }
   useEffect(() => setValues({ ...values, length: '', width: '', height: '', size: '', weight: '' }), [values?.type]);
 
