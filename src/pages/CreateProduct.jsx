@@ -37,7 +37,7 @@ const CreateProduct = () => {
       btnFunction={submitProduct}
       btnOne="Save"
       btnTwo="Cancel">
-      <form action='submit'>
+      <form action='submit' id='product_form'>
         <div className="left-form-section">
           <Input tabIndex={1} inputName="SKU" inputId="sku" inputValue={values?.sku} handleChange={handleChange} placeholder="Enter SKU" />
           <Input tabIndex={2} inputName="Name" inputId="name" inputValue={values?.name} handleChange={handleChange} placeholder="Enter Name" />
