@@ -37,4 +37,5 @@ export const enumerateObject = (obj) => {
 }
 
 export const capitalizeStr = str => str.charAt(0).toUpperCase() + str.slice(1);
-export const determineUnit = str => str === 'size' ? 'MB' : str === 'weight' ? 'KG' : ''
+export const determineUnit = str => str === 'size' ? 'MB' : str === 'weight' ? 'KG' : '';
+export const elementIds = arrValues => arrValues.map(val => parseInt(val?.id, 10));

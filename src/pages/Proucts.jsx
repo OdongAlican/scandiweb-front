@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AppContainer from '../components/AppContainer';
 import ProductCard from '../components/ProductCard';
-import { baseURL } from '../utills/routes';
+import { baseURL, ROUTES } from '../utills/routes';
+import { elementIds } from '../utills/helpers';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,6 @@ function Products() {
     try {
       const response = await axios.get(baseURL);
       const res = response?.data;
-      console.log(res)
       setProducts(res);
     } catch (error) {
       console.error(error);
@@ -39,7 +39,15 @@ function Products() {
 
   useEffect(() => { getProducts() }, []);
 
-  const deleteProducts = () => setProducts(products.filter(a => !deleteArray.map(b => b.id).includes(a.id)));
+  const deleteProducts = async () => {
+      fetch(baseURL, {
+        method: 'delete',
+        body: JSON.stringify(elementIds(deleteArray))
+      }).then(function (response) {
+        setProducts(products.filter(a => !deleteArray.map(b => b.id).includes(a.id)));
+        return response.json();
+      }).catch(er => console.error(er));
+  }
 
   return (
     <AppContainer
