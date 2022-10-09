@@ -6,7 +6,7 @@ export const productTypes = [
 ];
 
 export const initialState = {
-    sku: '', name: '', price: '', type: '', description: '',
+    sku: '', name: '', price: '', type: '',
     size: '', height: '', width: '', length: '', weight: ''
 };
 

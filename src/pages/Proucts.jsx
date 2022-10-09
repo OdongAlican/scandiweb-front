@@ -31,6 +31,7 @@ function Products() {
     try {
       const response = await axios.get(baseURL);
       const res = response?.data;
+      console.log(response?.data, 'response data');
       setProducts(res);
     } catch (error) {
       console.error(error);

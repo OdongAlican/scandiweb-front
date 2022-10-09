@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import AppContainer from '../components/AppContainer';
 import Input from '../components/Input';
 import Select from '../components/Select';
-import TextArea from '../components/TextArea';
 import { productTypes, initialState, convertToBase64 } from '../utills/helpers';
 import { baseURL, ROUTES } from '../utills/routes';
 
@@ -58,17 +57,17 @@ const CreateProduct = () => {
           {
             values?.type === 'DVD' ? (<div>
               <Input tabIndex={4} inputName="Size (MB)" inputId="size" inputValue={values?.size} handleChange={handleChange} placeholder="Enter size (e.g 2)" error={validateInput(errors?.data?.size)} />
-              <TextArea tabIndex={5} inputName="Description" inputId="description" inputValue={values?.description} handleChange={handleChange} error={validateInput(errors?.description)} />
+              <div className='descrtion-section'>Please, provide size</div>
             </div>) :
               values?.type === 'Furniture' ? (<div>
                 <Input tabIndex={4} inputName="Height (CM)" inputId="height" inputValue={values?.height} handleChange={handleChange} placeholder="Enter height (e.g 2)" error={validateInput(values?.height)} />
                 <Input tabIndex={5} inputName="Width (CM)" inputId="width" inputValue={values?.width} handleChange={handleChange} placeholder="Enter width (e.g 2)" error={validateInput(values?.width)} />
                 <Input tabIndex={6} inputName="Length (CM)" inputId="length" inputValue={values?.length} handleChange={handleChange} placeholder="Enter length (e.g 2)" error={validateInput(values?.length)} />
-                <TextArea tabIndex={7} inputName="Description" inputId="description" inputValue={values?.description} handleChange={handleChange} error={validateInput(errors?.description)} />
+                <div className='descrtion-section'>Please, provide dimensions</div>
               </div>) :
                 values?.type === 'Book' ? (<div>
                   <Input tabIndex={4} inputName="Weight (KG)" inputId="weight" inputValue={values?.weight} handleChange={handleChange} placeholder="Enter weight (e.g 2)" error={validateInput(errors?.data?.weight)} />
-                  <TextArea tabIndex={5} inputName="Description" inputId="description" inputValue={values?.description} handleChange={handleChange} error={validateInput(errors?.description)} />
+                  <div className='descrtion-section'>Please, provide weight</div>
                 </div>) : null
           }
         </div>
