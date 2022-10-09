@@ -1,18 +1,21 @@
 import React from 'react';
 
-const TextArea = ({ inputName = "Description", inputId, inputValue, handleChange, tabIndex }) => {
+const TextArea = ({ inputName = "Description", inputId, inputValue, handleChange, tabIndex, error }) => {
   return (
-    <div className='text-area-container'>
-      <label htmlFor={inputName}>{inputName}</label>
-      <textarea
-        tabIndex={tabIndex}
-        id={inputId}
-        value={inputValue}
-        name={inputId}
-        onChange={e => handleChange(e)}
-        cols="30"
-        rows="6"></textarea>
-    </div>
+    <>
+      <div className='text-area-container'>
+        <label htmlFor={inputName}>{inputName}</label>
+        <textarea
+          tabIndex={tabIndex}
+          id={inputId}
+          value={inputValue}
+          name={inputId}
+          onChange={e => handleChange(e)}
+          cols="30"
+          rows="6"></textarea>
+      </div>
+      {error && <div className='error-message'>Field is required</div>}
+    </>
   )
 }
 

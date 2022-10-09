@@ -1,8 +1,8 @@
 export const productTypes = [
     { id: '', value: '', text: 'Type Switcher' },
-    { id: 'DVD', value: 'dvd', text: 'DVD' },
-    { id: 'Furniture', value: 'furniture', text: 'Furniture' },
-    { id: 'Book', value: 'book', text: 'Book' },
+    { id: 'DVD', value: 'DVD', text: 'DVD' },
+    { id: 'Furniture', value: 'Furniture', text: 'Furniture' },
+    { id: 'Book', value: 'Book', text: 'Book' },
 ];
 
 export const initialState = {
@@ -15,18 +15,6 @@ const concatinate = (value) => {
     return '';
 }
 
-const base64Format = (value) => {
-    const formatOne = {
-        ...value, data: { size: value?.size, weight: value?.weight, dimension: concatinate(value), }
-    }
-    const { size, weight, height, length, width, ...formatTwo } = formatOne;
-    return { ...formatTwo, data: btoa(JSON.stringify(formatTwo?.data)) }
-}
-
-export const formValidator = (formData) => base64Format(formData);
-
-export const decodeBase64Data = (data) => atob(data);
-
 export const enumerateObject = (obj) => {
     let result;
     const dt = JSON.parse(obj)
@@ -35,6 +23,29 @@ export const enumerateObject = (obj) => {
     });
     return result;
 }
+
+export const formValidator = obj => {
+    let validObj = true;
+    const { data, ...validForm } = obj;
+    Object.values(validForm).forEach(ele => { if (!ele.length) { return validObj = false } });
+
+    if (!enumerateObject(JSON.stringify(obj?.data)) || !validObj) return ({ ...validForm, data: obj?.data, error: true });
+    return obj;
+};
+
+const base64Format = (value) => {
+    const formatOne = {
+        ...value, data: { size: value?.size, weight: value?.weight, dimension: concatinate(value), }
+    }
+    const { size, weight, height, length, width, ...formatTwo } = formatOne;
+    const validatedData = formValidator(formatTwo);
+    if (validatedData?.error) return validatedData;
+    return { ...formatTwo, data: btoa(JSON.stringify(formatTwo?.data)) }
+}
+
+export const convertToBase64 = (formData) => base64Format(formData);
+
+export const decodeBase64Data = (data) => atob(data);
 
 export const capitalizeStr = str => str.charAt(0).toUpperCase() + str.slice(1);
 export const determineUnit = str => str === 'size' ? 'MB' : str === 'weight' ? 'KG' : '';

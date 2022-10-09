@@ -68,3 +68,12 @@
         flex-direction: column;
     }
 }
+
+.error-message {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    font-size: 13px;
+    color: red;
+    margin-bottom: 10px;
+}
