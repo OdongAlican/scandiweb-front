@@ -24,7 +24,7 @@ const Input = ({
           name={inputId}
           onChange={e => handleChange(e)} />
       </div>
-      {error && <div className='error-message'>Field is required</div>}
+      {error?.error && <div className='error-message'>{error?.text} is required</div>}
     </>
   )
 }

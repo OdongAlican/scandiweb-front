@@ -9,7 +9,7 @@ const Select = ({ selectOptions, selectName, handleChange, selectValues, error, 
                     {selectOptions?.map(opt => (<option id={opt.id} key={opt.value} value={opt.value}>{opt.text}</option>))}
                 </select>
             </div>
-            {error && <div className='error-message'>Field is required</div>}
+            {error?.error && <div className='error-message'>{error?.text} is required</div>}
         </>
     )
 }
