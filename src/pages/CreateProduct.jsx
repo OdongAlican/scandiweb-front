@@ -21,7 +21,6 @@ const CreateProduct = () => {
   const submitProduct = async () => {
     setSubmitState(true);
     const data = convertToBase64(values);
-    console.log(data, 'data');
     if (data?.error) return setErrors(data);
 
     fetch(baseURL, { method: 'post', body: JSON.stringify(data) })

@@ -17,7 +17,7 @@ const concatinate = (value) => {
 
 export const enumerateObject = (obj) => {
     let result;
-    const dt = typeof obj === String ? JSON.parse(obj) : obj
+    const dt = JSON.parse(obj);
     Object.entries(dt).forEach(([key, value]) => {
         if (value.length > 0) { result = { value, key } };
     });
