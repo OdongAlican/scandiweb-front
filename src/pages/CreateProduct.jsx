@@ -21,12 +21,12 @@ const CreateProduct = () => {
   const submitProduct = async () => {
     setSubmitState(true);
     const data = convertToBase64(values);
-
+    console.log(data, 'data');
     if (data?.error) return setErrors(data);
 
     fetch(baseURL, { method: 'post', body: JSON.stringify(data) })
       .then(function (response) { return response.json(); })
-      .then(function (data) { setSubmitState(false); console.log(data); navigate(ROUTES?.products) })
+      .then(function (data) { setSubmitState(false); navigate(ROUTES?.products) })
       .catch(er => { console.error(er); setSubmitState(false); });
   }
 

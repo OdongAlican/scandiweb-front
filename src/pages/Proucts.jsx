@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AppContainer from '../components/AppContainer';
 import ProductCard from '../components/ProductCard';
-import { baseURL, ROUTES } from '../utills/routes';
+import { baseURL } from '../utills/routes';
 import { elementIds } from '../utills/helpers';
 
 function Products() {
@@ -15,10 +15,10 @@ function Products() {
   }
 
   const filterArray = (data, current) => data.forEach(ele => {
-    if (ele?.id === current?.id && current?.value === true) {
+    if (ele?.id === parseInt(current?.id, 10) && current?.value === true) {
       return setDeleteArray([...deleteArray, ele]);
     }
-    if (ele?.id === current?.id && current?.value === false) {
+    if (ele?.id === parseInt(current?.id, 10) && current?.value === false) {
       const data = deleteArray.filter(val => val?.id !== ele?.id)
       setDeleteArray(data);
     }
@@ -30,8 +30,8 @@ function Products() {
   const getProducts = async () => {
     try {
       const response = await axios.get(baseURL);
+      console.log(response?.data);
       const res = response?.data;
-      console.log(response?.data, 'response data');
       setProducts(res);
     } catch (error) {
       console.error(error);
@@ -41,9 +41,10 @@ function Products() {
   useEffect(() => { getProducts() }, []);
 
   const deleteProducts = async () => {
+      const data = elementIds(deleteArray);
       fetch(baseURL, {
         method: 'delete',
-        body: JSON.stringify(elementIds(deleteArray))
+        body: JSON.stringify(data)
       }).then(function (response) {
         setProducts(products.filter(a => !deleteArray.map(b => b.id).includes(a.id)));
         return response.json();

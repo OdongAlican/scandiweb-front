@@ -17,7 +17,7 @@ const concatinate = (value) => {
 
 export const enumerateObject = (obj) => {
     let result;
-    const dt = JSON.parse(obj)
+    const dt = typeof obj === String ? JSON.parse(obj) : obj
     Object.entries(dt).forEach(([key, value]) => {
         if (value.length > 0) { result = { value, key } };
     });
@@ -47,6 +47,6 @@ export const convertToBase64 = (formData) => base64Format(formData);
 
 export const decodeBase64Data = (data) => atob(data);
 
-export const capitalizeStr = str => str.charAt(0).toUpperCase() + str.slice(1);
+export const capitalizeStr = str => str?.charAt(0).toUpperCase() + str?.slice(1);
 export const determineUnit = str => str === 'size' ? 'MB' : str === 'weight' ? 'KG' : '';
 export const elementIds = arrValues => arrValues.map(val => parseInt(val?.id, 10));
