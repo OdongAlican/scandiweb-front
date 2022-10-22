@@ -41,6 +41,7 @@ function Products() {
   useEffect(() => { getProducts() }, []);
 
   const deleteProducts = async () => {
+    if(deleteArray.length === 0) return;
       const data = elementIds(deleteArray);
       fetch(baseURL, {
         method: 'delete',
