@@ -42,7 +42,7 @@ const CreateProduct = () => {
         <div className="left-form-section">
           <Input tabIndex={1} inputName="SKU" inputId="sku" inputValue={values?.sku} handleChange={handleChange} placeholder="Enter SKU" error={{ error: validateInput(errors?.sku), text: 'Sku' }} />
           <Input tabIndex={2} inputName="Name" inputId="name" inputValue={values?.name} handleChange={handleChange} placeholder="Enter Name" error={{ error: validateInput(errors?.name), text: 'Name' }} />
-          <Input tabIndex={3} inputName="Price ($)" inputId="price" inputValue={values?.price} handleChange={handleChange} placeholder="Enter price (e.g 12)" error={{ error: validateInput(errors?.price), text: 'Price' }} />
+          <Input tabIndex={3} inputName="Price ($)" inputId="price" inputType="number" inputValue={values?.price} handleChange={handleChange} placeholder="Enter price (e.g 12)" error={{ error: validateInput(errors?.price), text: 'Price' }} />
           <Select
             selectID="productType"
             selectOptions={productTypes}
@@ -55,17 +55,17 @@ const CreateProduct = () => {
         <div className="right-form-section">
           {
             values?.type === 'DVD' ? (<div>
-              <Input tabIndex={4} inputName="Size (MB)" inputId="size" inputValue={values?.size} handleChange={handleChange} placeholder="Enter size (e.g 2)" error={{ error: validateInput(errors?.data?.size), text: 'Size' }} />
+              <Input tabIndex={4} inputName="Size (MB)" inputId="size" inputValue={values?.size} handleChange={handleChange} inputType="number" placeholder="Enter size (e.g 2)" error={{ error: validateInput(errors?.data?.size), text: 'Size' }} />
               <div className='descrtion-section'>Please, provide size</div>
             </div>) :
               values?.type === 'Furniture' ? (<div>
-                <Input tabIndex={4} inputName="Height (CM)" inputId="height" inputValue={values?.height} handleChange={handleChange} placeholder="Enter height (e.g 2)" error={{ error: validateInput(values?.height), text: 'Height' }} />
-                <Input tabIndex={5} inputName="Width (CM)" inputId="width" inputValue={values?.width} handleChange={handleChange} placeholder="Enter width (e.g 2)" error={{ error: validateInput(values?.width), text: 'Width' }} />
-                <Input tabIndex={6} inputName="Length (CM)" inputId="length" inputValue={values?.length} handleChange={handleChange} placeholder="Enter length (e.g 2)" error={{ error: validateInput(values?.length), text: 'Length' }} />
+                <Input tabIndex={4} inputName="Height (CM)" inputId="height" inputValue={values?.height} handleChange={handleChange} inputType="number" placeholder="Enter height (e.g 2)" error={{ error: validateInput(values?.height), text: 'Height' }} />
+                <Input tabIndex={5} inputName="Width (CM)" inputId="width" inputValue={values?.width} handleChange={handleChange} inputType="number" placeholder="Enter width (e.g 2)" error={{ error: validateInput(values?.width), text: 'Width' }} />
+                <Input tabIndex={6} inputName="Length (CM)" inputId="length" inputValue={values?.length} handleChange={handleChange} inputType="number" placeholder="Enter length (e.g 2)" error={{ error: validateInput(values?.length), text: 'Length' }} />
                 <div className='descrtion-section'>Please, provide dimensions</div>
               </div>) :
                 values?.type === 'Book' ? (<div>
-                  <Input tabIndex={4} inputName="Weight (KG)" inputId="weight" inputValue={values?.weight} handleChange={handleChange} placeholder="Enter weight (e.g 2)" error={{ error: validateInput(errors?.data?.weight), text: 'Weight' }} />
+                  <Input tabIndex={4} inputName="Weight (KG)" inputId="weight" inputValue={values?.weight} handleChange={handleChange} inputType="number" placeholder="Enter weight (e.g 2)" error={{ error: validateInput(errors?.data?.weight), text: 'Weight' }} />
                   <div className='descrtion-section'>Please, provide weight</div>
                 </div>) : null
           }
